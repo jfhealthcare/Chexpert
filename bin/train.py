@@ -22,7 +22,6 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../')
 torch.manual_seed(0)
 torch.cuda.manual_seed_all(0)
 
-MAX_DIRECTORY_SIZE = 30 * 1024
 from data.dataset import ImageDataset  # noqa
 from model.classifier import Classifier  # noqa
 from utils.misc import lr_schedule  # noqa
@@ -37,6 +36,8 @@ parser.add_argument('--num_workers', default=8, type=int, help="Number of "
                     "workers for each data loader")
 parser.add_argument('--device_ids', default='0,1,2,3', type=str,
                     help="GPU indices ""comma separated, e.g. '0,1' ")
+parser.add_argument('--pre_train', default=None, type=str, help="If get parameters from "
+                    "pretrained model")
 parser.add_argument('--resume', default=0, type=int, help="If resume from "
                     "previous run")
 parser.add_argument('--logtofile', default=False, type=bool, help="Save log "
@@ -304,6 +305,10 @@ def run(args):
             h, w = cfg.height, cfg.width
         summary(model.to(device), (3, h, w))
     model = DataParallel(model, device_ids=device_ids).to(device).train()
+    if args.pre_train is not None:
+        if os.path.exists(args.pre_train):
+            ckpt = torch.load(args.pre_train, map_location=device)
+            model.module.load_state_dict(ckpt)
     optimizer = get_optimizer(model.parameters(), cfg)
 
     src_folder = os.path.dirname(os.path.abspath(__file__)) + '/../'
@@ -312,8 +317,6 @@ def run(args):
                                           % src_folder)
     if rc != 0:
         raise Exception('Copy folder error : {}'.format(rc))
-    if int(size) > MAX_DIRECTORY_SIZE:
-        raise Exception('Repo size too large : {}'.format(int(size)))
     rc, err_msg = subprocess.getstatusoutput('cp -R %s %s' % (src_folder,
                                                               dst_folder))
     if rc != 0:

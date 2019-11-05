@@ -15,7 +15,7 @@
     "border_pad": "pixel_mean",
     "num_classes": [1,1,1,1,1],
     "batch_weight": true,
-    "enhance_index": [6],
+    "enhance_index": [2,6],
     "enhance_times": 2,
     "pos_weight": [1,1,1,1,1],
     "train_batch_size": 56,
