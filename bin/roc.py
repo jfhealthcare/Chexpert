@@ -38,9 +38,8 @@ def read_csv(csv_path, true_csv=False):
             fields = line.strip('\n').split(',')
             image_paths.append(fields[0])
             if true_csv is False:
-                probs.append(list(map(float, fields[5:])))
+                probs.append(list(map(float, fields[1:])))
             else:
-                # probs.append(list(map(float, fields[5:])))
                 prob = []
                 for index, value in enumerate(fields[5:]):
                     if index == 5 or index == 8:
@@ -82,7 +81,7 @@ def transform_csv_en(input_path, output_path):
     infile['Study'] = infile.Path.apply(get_study)
     outfile = infile.drop('Path', axis=1).groupby('Study').mean().reset_index()
     groups = infile.drop('Path', axis=1).groupby('Study')
-    outfile['Cardiomegaly'] = groups['Cardiomegaly'].mean().reset_index()[
+    outfile['Cardiomegaly'] = groups['Cardiomegaly'].min().reset_index()[
         'Cardiomegaly']
     outfile['Edema'] = groups['Edema'].max().reset_index()['Edema']
     outfile['Consolidation'] = groups['Consolidation'].mean().reset_index()[
@@ -108,12 +107,8 @@ def run(args):
 
     # num_labels = len(header_true) - 5
     num_labels = 5
-    header = [
-        header_true[8],
-        header_true[11],
-        header_true[13],
-        header_true[17],
-        header_true[19]]
+    header = [header_true[7], header_true[10], header_true[11],
+              header_true[13], header_true[15]]
 
     for i in range(num_labels):
         label = header[i]

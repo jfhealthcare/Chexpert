@@ -110,8 +110,7 @@ class ImageDataset(Dataset):
         if self.cfg.use_equalizeHist:
             image = cv2.equalizeHist(image)
 
-        image = np.repeat(
-            np.expand_dims(image, axis=2), 3, axis=2).astype(np.float32)
+        image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB).astype(np.float32)
 
         if self.cfg.fix_ratio:
             image = self._fix_ratio(image)
