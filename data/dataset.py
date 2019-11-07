@@ -19,11 +19,11 @@ class ImageDataset(Dataset):
         with open(label_path) as f:
             header = f.readline().strip('\n').split(',')
             self._label_header = [
-                header[3],
-                header[6],
                 header[7],
-                header[9],
-                header[11]]
+                header[10],
+                header[11],
+                header[13],
+                header[15]]
             for line in f:
                 labels = []
                 fields = line.strip('\n').split(',')
