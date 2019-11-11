@@ -1,6 +1,6 @@
 {
-    "train_csv": "/nas/user/xuehui/chex/Chexpert/config/train.csv",
-    "dev_csv": "/nas/user/xuehui/chex/Chexpert/config/dev.csv",
+    "train_csv": "/Path/to/train.csv",
+    "dev_csv": "/Path/to/dev.csv",
     "backbone": "densenet121",
     "width": 512,
     "height": 512,
@@ -16,7 +16,7 @@
     "num_classes": [1,1,1,1,1],
     "batch_weight": true,
     "enhance_index": [2,6],
-    "enhance_times": 2,
+    "enhance_times": 1,
     "pos_weight": [1,1,1,1,1],
     "train_batch_size": 56,
     "dev_batch_size": 56,
