@@ -25,7 +25,7 @@
     "test_every": 100,
     "epoch": 3,
     "norm_type": "BatchNorm",
-    "global_pool": "AVG_MAX",
+    "global_pool": "EXP",
     "fc_bn": true,
     "attention_map": "FPA",
     "lse_gamma": 0.5,

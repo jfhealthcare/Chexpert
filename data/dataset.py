@@ -1,9 +1,10 @@
 import numpy as np
 from torch.utils.data import Dataset
 import cv2
+import os
 from PIL import Image
 from data.imgaug import GetTransforms
-
+from data.utils import transform
 np.random.seed(0)
 
 
@@ -45,6 +46,7 @@ class ImageDataset(Dataset):
                 # labels = ([self.dict.get(n, n) for n in fields[5:]])
                 labels = list(map(int, labels))
                 self._image_paths.append(image_path)
+                assert os.path.exists(image_path), image_path
                 self._labels.append(labels)
                 if flg_enhance and self._mode == 'train':
                     for i in range(self.cfg.enhance_times):
@@ -55,81 +57,13 @@ class ImageDataset(Dataset):
     def __len__(self):
         return self._num_image
 
-    def _border_pad(self, image):
-        h, w, c = image.shape
-
-        if self.cfg.border_pad == 'zero':
-            image = np.pad(
-                image,
-                ((0, self.cfg.long_side - h),
-                 (0, self.cfg.long_side - w), (0, 0)),
-                mode='constant', constant_values=0.0
-            )
-        elif self.cfg.border_pad == 'pixel_mean':
-            image = np.pad(
-                image,
-                ((0, self.cfg.long_side - h),
-                 (0, self.cfg.long_side - w), (0, 0)),
-                mode='constant', constant_values=self.cfg.pixel_mean
-            )
-        else:
-            image = np.pad(
-                image,
-                ((0, self.cfg.long_side - h),
-                 (0, self.cfg.long_side - w), (0, 0)),
-                mode=self.cfg.border_pad
-            )
-
-        return image
-
-    def _fix_ratio(self, image):
-        h, w, c = image.shape
-
-        if h >= w:
-            ratio = h * 1.0 / w
-            h_ = self.cfg.long_side
-            w_ = round(h_ / ratio)
-        else:
-            ratio = w * 1.0 / h
-            w_ = self.cfg.long_side
-            h_ = round(w_ / ratio)
-
-        image = cv2.resize(image, dsize=(w_, h_),
-                           interpolation=cv2.INTER_LINEAR)
-
-        image = self._border_pad(image)
-
-        return image
-
     def __getitem__(self, idx):
         image = cv2.imread(self._image_paths[idx], 0)
         image = Image.fromarray(image)
         if self._mode == 'train':
             image = GetTransforms(image, type=self.cfg.use_transforms_type)
         image = np.array(image)
-        if self.cfg.use_equalizeHist:
-            image = cv2.equalizeHist(image)
-
-        image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB).astype(np.float32)
-
-        if self.cfg.fix_ratio:
-            image = self._fix_ratio(image)
-        else:
-            image = cv2.resize(image, dsize=(self.cfg.width, self.cfg.height),
-                               interpolation=cv2.INTER_LINEAR)
-
-        if self.cfg.gaussian_blur > 0:
-            image = cv2.GaussianBlur(image, (self.cfg.gaussian_blur,
-                                             self.cfg.gaussian_blur), 0)
-
-        # normalization
-        image -= self.cfg.pixel_mean
-        # vgg and resnet do not use pixel_std, densenet and inception use.
-        if self.cfg.use_pixel_std:
-            image /= self.cfg.pixel_std
-        # normal image tensor :  H x W x C
-        # torch image tensor :   C X H X W
-        image = image.transpose((2, 0, 1))
+        image = transform(image, self.cfg)
         labels = np.array(self._labels[idx]).astype(np.float32)
 
         path = self._image_paths[idx]

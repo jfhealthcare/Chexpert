@@ -29,3 +29,8 @@ def get_optimizer(params, cfg):
                        weight_decay=cfg.weight_decay)
     else:
         raise Exception('Unknown optimizer : {}'.format(cfg.optimizer))
+
+
+def tensor2numpy(input_tensor):
+    # device cuda Tensor to host numpy
+    return input_tensor.cpu().detach().numpy()
