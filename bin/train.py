@@ -36,8 +36,8 @@ parser.add_argument('--num_workers', default=8, type=int, help="Number of "
                     "workers for each data loader")
 parser.add_argument('--device_ids', default='0,1,2,3', type=str,
                     help="GPU indices ""comma separated, e.g. '0,1' ")
-parser.add_argument('--pre_train', default=None, type=str, help="If get parameters from "
-                    "pretrained model")
+parser.add_argument('--pre_train', default=None, type=str, help="If get"
+                    "parameters from pretrained model")
 parser.add_argument('--resume', default=0, type=int, help="If resume from "
                     "previous run")
 parser.add_argument('--logtofile', default=False, type=bool, help="Save log "

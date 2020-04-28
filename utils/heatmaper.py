@@ -2,7 +2,6 @@ import os
 import sys
 import torch
 import cv2
-import matplotlib
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable
@@ -144,7 +143,8 @@ class Heatmaper(object):
             disease_classes.index(self.prefix)
         prefix_name = ''
         # vgg and resnet do not use pixel_std, densenet and inception use.
-        ori_image = image_np[0, 0, :, :] * self.cfg.pixel_std + self.cfg.pixel_mean
+        ori_image = image_np[0, 0, :, :] * self.cfg.pixel_std + \
+            self.cfg.pixel_mean
         for i in range(num_tasks):
             prob = torch.sigmoid(logits[i])
             prob = tensor2numpy(prob)
