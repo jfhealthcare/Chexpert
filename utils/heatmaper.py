@@ -88,7 +88,7 @@ class Heatmaper(object):
         image = ax.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
         return image
 
-    def get_overlayed_smooth(self, ax, logit_map, prob_map):
+    def get_overlayed_smooth(self, ax, prob_map):
         long_side = self.cfg.long_side
         image = ax.imshow(cv2.resize(prob_map, (long_side, long_side)),
                           cmap='jet',
@@ -109,10 +109,7 @@ class Heatmaper(object):
             image: AxesImage of matplotlib.image
         """
         overlayed_image = ax.imshow(ori_image, cmap='gray', vmin=0, vmax=255)
-        print(prob_map.shape)
-        overlayed_image = self.get_overlayed_smooth(ax,
-                                                    logit_map,
-                                                    prob_map)
+        overlayed_image = self.get_overlayed_smooth(ax, prob_map)
 
         return overlayed_image
 
@@ -130,7 +127,6 @@ class Heatmaper(object):
         logits, logit_maps = self.model(image_tensor)
         logits = torch.stack(logits)
         logit_maps = torch.stack(logit_maps)
-        print(logit_maps.shape)
         # tensor to numpy
         image_np = tensor2numpy(image_tensor)
         prob_maps_np = tensor2numpy(torch.sigmoid(logit_maps))
@@ -150,7 +146,6 @@ class Heatmaper(object):
             prob = tensor2numpy(prob)
             if prefix == i:
                 prefix_name = '{:.4f}_'.format(prob[0][0])
-            print(prob)
             subtitle = '{}:{:.4f}'.format(disease_classes[i],
                                           prob[0][0])
             ax_overlay = self.set_overlay(plt_fig, row_, i, subtitle)
