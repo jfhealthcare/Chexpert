@@ -49,12 +49,12 @@ class Heatmaper(object):
             image_file: str to an image file path
         Returns:
             image: (1, C, H, W) tensor of image
-            image_color: (H, W, C) numpy array of BGR image
+            image_color: (H, W, C) numpy array of RGB image
         """
         image_gray = cv2.imread(image_file, 0)
         assert image_gray is not None, "invalid image read in: {}"\
             .format(image_file)
-        image_color = cv2.cvtColor(image_gray, cv2.COLOR_GRAY2BGR)
+        image_color = cv2.cvtColor(image_gray, cv2.COLOR_GRAY2RGB)
         image = transform(image_gray, self.cfg)
         image = torch.from_numpy(image)
         image = image.unsqueeze(0)
@@ -85,7 +85,7 @@ class Heatmaper(object):
         Returns:
             image: AxesImage of matplotlib.image
         """
-        image = ax.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+        image = ax.imshow(image)
         return image
 
     def get_overlayed_smooth(self, ax, prob_map):
