@@ -131,20 +131,21 @@ class Classifier(nn.Module):
     def forward(self, x):
         # (N, C, H, W)
         feat_map = self.backbone(x)
-
+        # [(N, 1), (N,1),...]
         logits = list()
+        # [(N, H, W), (N, H, W),...]
         logit_maps = list()
         for index, num_class in enumerate(self.cfg.num_classes):
             if self.cfg.attention_map != "None":
                 feat_map = self.attention_map(feat_map)
 
             classifier = getattr(self, "fc_" + str(index))
-            # (N, num_class, H, W)
+            # (N, 1, H, W)
             logit_map = None
             if not (self.cfg.global_pool == 'AVG_MAX' or
                     self.cfg.global_pool == 'AVG_MAX_LSE'):
                 logit_map = classifier(feat_map)
-                logit_maps.append(logit_map)
+                logit_maps.append(logit_map.squeeze())
             # (N, C, 1, 1)
             feat = self.global_pool(feat_map, logit_map)
 

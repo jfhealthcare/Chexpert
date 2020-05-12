@@ -101,7 +101,7 @@ def run(args):
 
     model = Classifier(cfg)
     model = DataParallel(model, device_ids=device_ids).to(device).eval()
-    ckpt_path = os.path.join(args.model_path, 'best.ckpt')
+    ckpt_path = os.path.join(args.model_path, 'best1.ckpt')
     ckpt = torch.load(ckpt_path, map_location=device)
     model.module.load_state_dict(ckpt['state_dict'])
 

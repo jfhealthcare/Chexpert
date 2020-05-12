@@ -12,43 +12,67 @@ Here's a tutorial walking you through official evaluation of your model. Once yo
 * If you want to train yourself from scratch, we provide training and test the footwork code. In addition, we provide complete training courses
 * If you want to use our model in your method, we provide **a best single network pre-training model,** and you can get the network code in the code
 
-### train the model by yourself
+### Train the model by yourself
 
 * Data preparation
-> We gave you the example file, which is in the folder 'config/train.csv'
-> You can follow it and write its path to 'config/example.json'
+> We gave you the example file, which is in the folder `config/train.csv`
+> You can follow it and write its path to `config/example.json`
 
-* if you want to train the model,please run the command.(We use 4 1080Ti for training, so larger than 4 gpus is recommended）:
+* If you want to train the model,please run the command. (We use 4 1080Ti for training, so larger than 4 gpus is recommended）:
 > `pip install -r requirements.txt`
 > 
 > `python Chexpert/bin/train.py Chexpert/config/example.json logdir --num_workers 8 --device_ids "0,1,2,3"`
 
-* if you want to test your model,please run the command:
+* If you want to test your model, please run the command:
 > `cd logdir/`
 
-* cuz we set "save_top_k": 3 in the config/example.json, so we may have got 3 models for ensemble here. So you should do as below:
+* Cuz we set "save_top_k": 3 in the `config/example.json`, so we may have got 3 models for ensemble here. So you should do as below:
 > `cp best1.ckpt best.ckpt`
 > 
 > `python classification/bin/test.py`
 
-* if you want to plot the roc figure and get the AUC, please run the command
+* If you want to plot the roc figure and get the AUC, please run the command
 > `python classification/bin/roc.py plotname`
 
- * *How to drink a cup of coffee?*
+ * *How about drink a cup of coffee?*
 > you can run the command like this. Then you can have a cup of caffe.(log will be written down on the disk)
 `python Chexpert/bin/train.py Chexpert/config/example.json logdir --num_workers 8 --device_ids "0,1,2,3" --logtofile True &`
 
 ### train the model with pre-trained weights
-* we provide one pre-trained model here: `config/pre_train.pth`
+* We provide one pre-trained model here: `config/pre_train.pth`
 we test it on 200 patients dataset, got the **AUC** as below:
 
 |Cardiomegaly|Edema|Consolidation|Atelectasis|Pleural_Effusion|
 |---------|-----|---|----|-----|
 |0.8703|0.9436|0.9334|0.9029|0.9166|
 
-* you can train the model with pre-trained weights,run the command as below:
+* You can train the model with pre-trained weights, run the command as below:
 
 > `python Chexpert/bin/train.py Chexpert/config/example.json logdir --num_workers 8 --device_ids "0,1,2,3" --pre_train "Chexpert/config/pre_train.pth" `
+
+### Plot heatmap using trained model
+
+* Currently supported global_pool options in `/config/example.json` to plot heatmaps
+
+|global_pool|Support|
+|------|-----|
+|MAX|Yes|
+|AVG|Yes|
+|EXP|Yes|
+|LSE|Yes|
+|LINEAR|Yes|
+|AVG_MAX|No|
+|AVG_MAX_LSE|No|
+
+> We are now implementing heatmap options for `AVG_MAX`, `AVG_MAX_LSE`, and `PROB`, So before that you can use the supported `global_pool` options to train a model and plot the heatmaps.
+
+* You can plot heatmaps using command as below:
+
+
+> `python Chexpert/bin/heatmap.py logdir/best1.ckpt logdir/cfg.json CheXper_valid.txt logdir/heatmap_Cardiomegaly/ --device_ids '0' --prefix 'Cardiomegaly'`
+
+> Where the `CheXper_valid.txt` contains lines of jpg path 
+
 
 ### Contact
 * If you have any quesions, please post it on github issues or email at coolver@sina.com
