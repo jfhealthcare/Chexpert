@@ -27,7 +27,7 @@
     "norm_type": "BatchNorm",
     "global_pool": "EXP",
     "fc_bn": false,
-    "attention_map": "FPA",
+    "attention_map": "None",
     "lse_gamma": 0.5,
     "fc_drop": 0,
     "optimizer": "Adam",
