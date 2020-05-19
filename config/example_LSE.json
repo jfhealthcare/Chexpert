@@ -1,6 +1,6 @@
 {
-    "train_csv": "/nas/public/CheXpert/CheXpert-v1.0/train.csv",
-    "dev_csv": "/nas/public/CheXpert/CheXpert-v1.0/valid.csv",
+    "train_csv": "/Path/to/train.csv",
+    "dev_csv": "/Path/to/dev.csv",
     "backbone": "densenet121",
     "width": 512,
     "height": 512,
