@@ -68,9 +68,10 @@ we test it on 200 patients dataset, got the **AUC** as below:
 
 ||&emsp;&emsp;&emsp;&emsp; original &emsp;&emsp;&emsp;&emsp; [AVG (dev mAUC:0.895)](config/example_AVG.json) &emsp; [LSE (dev mAUC:0.896)](config/example_LSE.json) &emsp; [PROB (dev mAUC:0.896)](config/example_PROB.json)|
 |------|-----|
-|Cardiomegaly|<img src="Cardi.jpg" width="100%" align="middle"/>|
-|Atelectasis|<img src="AT.jpg" width="100%" align="middle"/>|
-|Consolidation|<img src="PE.jpg" width="100%" align="middle"/>|
+|Cardiomegaly|<img src="Cardiomegaly.jpg" width="100%" align="middle"/>|
+|Atelectasis|<img src="Atelectasis.jpg" width="100%" align="middle"/>|
+|Pleural Effusion|<img src="Pleural_Effusion.jpg" width="100%" align="middle"/>|
+|Consolidation|<img src="Consolidation.jpg" width="100%" align="middle"/>|
 * You can plot heatmaps using command as below:
 
 
