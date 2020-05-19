@@ -66,7 +66,7 @@ we test it on 200 patients dataset, got the **AUC** as below:
 
 * We also provide heatmap comparision here, including AVG, [LSE](https://arxiv.org/abs/1705.02315), and our own PROB pooling.
 
-||&emsp;&emsp;&emsp;&emsp; original &emsp;&emsp; [AVG (dev mAUC:0.895)](config/example_AVG.json) &emsp; [LSE (dev mAUC:0.896)](config/example_LSE.json) &emsp; [PROB (dev mAUC:0.896)](config/example_PROB.json)|
+||&emsp;&emsp;&emsp;&emsp; original &emsp;&emsp;&emsp; [AVG (dev mAUC:0.895)](config/example_AVG.json) &emsp; [LSE (dev mAUC:0.896)](config/example_LSE.json) &emsp; [PROB (dev mAUC:0.896)](config/example_PROB.json)|
 |------|-----|
 |Cardiomegaly|<img src="Cardi.jpg" width="100%" align="middle"/>|
 |Atelectasis|<img src="AT.jpg" width="100%" align="middle"/>|
