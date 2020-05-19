@@ -64,8 +64,13 @@ we test it on 200 patients dataset, got the **AUC** as below:
 |AVG_MAX|No|
 |AVG_MAX_LSE|No|
 
-> We are now implementing heatmap options for `AVG_MAX`, `AVG_MAX_LSE`, and `PROB`, So before that you can use the supported `global_pool` options to train a model and plot the heatmaps.
+> We also provide heatmap comparision here, including AVG, [LSE](https://arxiv.org/abs/1705.02315), and our own PROB pooling.
 
+||&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; original &emsp;&emsp;&emsp;&emsp;&emsp; [AVG (Best dev mAUC:0.895)](config/example_AVG.json) &emsp; [LSE (Best dev mAUC:0.896)](config/example_LSE.json) &emsp; [PROB (Best dev mAUC:0.896)](config/example_PROB.json)|
+|------|-----|
+|Cardiomegaly|<img src="Cardi.jpg" width="60%" align="middle"/>|
+|Atelectasis|<img src="AT.jpg" width="60%" align="middle"/>|
+|Consolidation|<img src="PE.jpg" width="60%" align="middle"/>|
 * You can plot heatmaps using command as below:
 
 
