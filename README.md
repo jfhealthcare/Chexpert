@@ -66,12 +66,30 @@ we test it on 200 patients dataset, got the **AUC** as below:
 
 * We also provide heatmap comparision here, including AVG, [LSE](https://arxiv.org/abs/1705.02315), and our own PROB pooling.
 
-||&emsp;&emsp;&emsp;&emsp; original &emsp;&emsp;&emsp;&emsp; [AVG (dev mAUC:0.895)](config/example_AVG.json) &emsp; [LSE (dev mAUC:0.896)](config/example_LSE.json) &emsp; [PROB (dev mAUC:0.896)](config/example_PROB.json)|
-|------|-----|
-|Cardiomegaly|<img src="Cardiomegaly.jpg" width="100%" align="middle"/>|
-|Atelectasis|<img src="Atelectasis.jpg" width="100%" align="middle"/>|
-|Pleural Effusion|<img src="Pleural_Effusion.jpg" width="100%" align="middle"/>|
-|Consolidation|<img src="Consolidation.jpg" width="100%" align="middle"/>|
+
+<table>
+  <tr>
+    <td> </td>
+		<td>original</td>
+		<td><a href="config/example_AVG.json">AVG (dev mAUC:0.895)</a></td>
+    <td><a href="config/example_LSE.json">LSE (dev mAUC:0.895)</a></td>
+    <td><a href="config/example_PROB.json">PROB (dev mAUC:0.895)</a></td>
+	<tr>
+  <tr>
+    <td>Cardiomegaly </td>
+		<td colspan="4"><img src="Cardiomegaly.jpg"></td>
+	<tr>
+  <tr>
+    <td>Atelectasis </td>
+		<td colspan="4"><img src="Atelectasis.jpg"></td>
+        <tr>
+    <td>Pleural Effusion </td>
+		<td colspan="4"><img src="Pleural_Effusion.jpg"></td>
+           <tr>
+    <td>Consolidation </td>
+		<td colspan="4"><img src="Consolidation.jpg"></td>
+</table>`
+
 * You can plot heatmaps using command as below:
 
 
