@@ -70,7 +70,7 @@ we test it on 200 patients dataset, got the **AUC** as below:
 <table>
   <tr>
     <td> </td>
-		<td>original</td>
+		<td>  &nbsp;&nbsp;&nbsp;&nbsp;original&nbsp;&nbsp;&nbsp;&nbsp;  </td>
 		<td><a href="config/example_AVG.json">AVG (dev mAUC:0.895)</a></td>
     <td><a href="config/example_LSE.json">LSE (dev mAUC:0.895)</a></td>
     <td><a href="config/example_PROB.json">PROB (dev mAUC:0.895)</a></td>
