@@ -71,9 +71,9 @@ we test it on 200 patients dataset, got the **AUC** as below:
   <tr>
     <td> </td>
 		<td>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;original&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
-		<td><a style="font-size:14px" href="config/example_AVG.json"><font size=2>AVG (dev mAUC:0.895)</font></a></td>
-    <td><a style="font-size:14px" href="config/example_LSE.json"><font size=2>LSE (dev mAUC:0.896)</font></a></td>
-    <td><a  style="font-size:14px" href="config/example_PROB.json"><font size=2>PROB (dev mAUC:0.896)</font></a></td>
+		<td><a  href="config/example_AVG.json"><font size=2>AVG (dev mAUC:0.895)</font></a></td>
+    <td><a  href="config/example_LSE.json"><font size=2>LSE (dev mAUC:0.896)</font></a></td>
+    <td><a   href="config/example_PROB.json"><font size=2>PROB (dev mAUC:0.896)</font></a></td>
 	<tr>
   <tr>
     <td>Cardiomegaly </td>
@@ -88,7 +88,7 @@ we test it on 200 patients dataset, got the **AUC** as below:
            <tr>
     <td>Consolidation </td>
 		<td colspan="4"><img src="Consolidation.jpg"></td>
-</table>`
+</table>
 
 * You can plot heatmaps using command as below:
 
