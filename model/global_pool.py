@@ -2,7 +2,7 @@ import torch
 from torch import nn
 
 
-class ProbPool(nn.Module):
+class PcamPool(nn.Module):
 
     def __init__(self):
         super(ProbPool, self).__init__()
@@ -120,7 +120,7 @@ class GlobalPool(nn.Module):
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
         self.maxpool = nn.AdaptiveMaxPool2d((1, 1))
         self.exp_pool = ExpPool()
-        self.probpool = ProbPool()
+        self.pcampool = PcamPool()
         self.linear_pool = LinearPool()
         self.lse_pool = LogSumExpPool(cfg.lse_gamma)
 
@@ -132,8 +132,8 @@ class GlobalPool(nn.Module):
             return self.avgpool(feat_map)
         elif self.cfg.global_pool == 'MAX':
             return self.maxpool(feat_map)
-        elif self.cfg.global_pool == 'PROB':
-            return self.probpool(feat_map, logit_map)
+        elif self.cfg.global_pool == 'PCAM':
+            return self.pcampool(feat_map, logit_map)
         elif self.cfg.global_pool == 'AVG_MAX':
             a = self.avgpool(feat_map)
             b = self.maxpool(feat_map)
