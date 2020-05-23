@@ -61,10 +61,11 @@ we test it on 200 patients dataset, got the **AUC** as below:
 |EXP|Yes|
 |LSE|Yes|
 |LINEAR|Yes|
+|PCAM|Yes|
 |AVG_MAX|No|
 |AVG_MAX_LSE|No|
 
-* We also provide heatmap comparision here, including AVG, [LSE](https://arxiv.org/abs/1705.02315), and our own PROB pooling.
+* We also provide heatmap comparision here, including AVG, [LSE](https://arxiv.org/abs/1705.02315), and our own PCAM pooling.
 
 
 <table>
@@ -73,7 +74,7 @@ we test it on 200 patients dataset, got the **AUC** as below:
 		<td>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;original&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </td>
 		<td><a  href="config/example_AVG.json"><font size=2>AVG (dev mAUC:0.895)</font></a></td>
     <td><a  href="config/example_LSE.json"><font size=2>LSE (dev mAUC:0.896)</font></a></td>
-    <td><a   href="config/example_PROB.json"><font size=2>PROB (dev mAUC:0.896)</font></a></td>
+    <td><a   href="config/example_PCAM.json"><font size=2>PCAM (dev mAUC:0.896)</font></a></td>
 	<tr>
   <tr>
     <td>Cardiomegaly </td>
