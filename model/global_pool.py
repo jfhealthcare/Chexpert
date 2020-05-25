@@ -2,6 +2,23 @@ import torch
 from torch import nn
 
 
+class PcamPool(nn.Module):
+
+    def __init__(self):
+        super(ProbPool, self).__init__()
+
+    def forward(self, feat_map, logit_map):
+        assert logit_map is not None
+
+        prob_map = torch.sigmoid(logit_map)
+        weight_map = prob_map / prob_map.sum(dim=2, keepdim=True)\
+            .sum(dim=3, keepdim=True)
+        feat = (feat_map * weight_map).sum(dim=2, keepdim=True)\
+            .sum(dim=3, keepdim=True)
+
+        return feat
+
+
 class LogSumExpPool(nn.Module):
 
     def __init__(self, gamma):
@@ -103,6 +120,7 @@ class GlobalPool(nn.Module):
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
         self.maxpool = nn.AdaptiveMaxPool2d((1, 1))
         self.exp_pool = ExpPool()
+        self.pcampool = PcamPool()
         self.linear_pool = LinearPool()
         self.lse_pool = LogSumExpPool(cfg.lse_gamma)
 
@@ -114,6 +132,8 @@ class GlobalPool(nn.Module):
             return self.avgpool(feat_map)
         elif self.cfg.global_pool == 'MAX':
             return self.maxpool(feat_map)
+        elif self.cfg.global_pool == 'PCAM':
+            return self.pcampool(feat_map, logit_map)
         elif self.cfg.global_pool == 'AVG_MAX':
             a = self.avgpool(feat_map)
             b = self.maxpool(feat_map)

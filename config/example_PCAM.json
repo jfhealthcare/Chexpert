@@ -25,7 +25,7 @@
     "test_every": 100,
     "epoch": 3,
     "norm_type": "BatchNorm",
-    "global_pool": "EXP",
+    "global_pool": "PCAM",
     "fc_bn": false,
     "attention_map": "None",
     "lse_gamma": 0.5,
