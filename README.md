@@ -98,15 +98,15 @@ we test it on 200 patients dataset, got the **AUC** as below:
 
 > Where the `CheXper_valid.txt` contains lines of jpg path 
 
+### About [PCAM](https://arxiv.org/abs/2005.14480) pooling
 
-### Contact
-* If you have any quesions, please post it on github issues or email at coolver@sina.com
+* PCAM Overview:
 
-### Reference
-* [https://stanfordmlgroup.github.io/competitions/chexpert/](https://stanfordmlgroup.github.io/competitions/chexpert/)
-* [http://www.jfhealthcare.com/](http://www.jfhealthcare.com/)
+<img src="PCAM.jpg" width="50%" align="middle"/>
 
-### Citation
+* If you think PCAM is a good way to generate heatmaps, you can cite our article like this:
+
+## Citation
 
     @misc{ye2020weakly,
         title={Weakly Supervised Lesion Localization With Probabilistic-CAM Pooling},
@@ -118,6 +118,11 @@ we test it on 200 patients dataset, got the **AUC** as below:
     }
 
 
+### Contact
+* If you have any quesions, please post it on github issues or email at coolver@sina.com
 
+### Reference
+* [https://stanfordmlgroup.github.io/competitions/chexpert/](https://stanfordmlgroup.github.io/competitions/chexpert/)
+* [http://www.jfhealthcare.com/](http://www.jfhealthcare.com/)
 
 
