@@ -102,11 +102,11 @@ we test it on 200 patients dataset, got the **AUC** as below:
 
 * PCAM Overview:
 
-<img src="PCAM.jpg" width="100%" align="middle"/>
+<img src="PCAM.png" width="80%" align="middle"/>
 
 * If you think PCAM is a good way to generate heatmaps, you can cite our article like this:
 
-## Citation
+### Citation
 
     @misc{ye2020weakly,
         title={Weakly Supervised Lesion Localization With Probabilistic-CAM Pooling},
