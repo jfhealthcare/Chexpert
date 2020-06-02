@@ -102,7 +102,7 @@ we test it on 200 patients dataset, got the **AUC** as below:
 
 * PCAM Overview:
 
-<img src="PCAM.png" width="80%" align="middle"/>
+<img src="PCAM.png" width="100%" align="middle"/>
 
 * If you think PCAM is a good way to generate heatmaps, you can cite our article like this:
 
