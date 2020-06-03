@@ -7,7 +7,7 @@ Chest radiography is the most common imaging examination globally, critical for 
 ## How to take part in?
 CheXpert uses a hidden test set for official evaluation of models. Teams submit their executable code on Codalab, which is then run on a test set that is not publicly readable. Such a setup preserves the integrity of the test results.
 
-Here's a tutorial walking you through official evaluation of your model. Once your model has been evaluated officially, your scores will be added to the leaderboard.**Please refer to the**[https://stanfordmlgroup.github.io/competitions/chexpert/](https://stanfordmlgroup.github.io/competitions/chexpert/)
+Here's a tutorial walking you through official evaluation of your model. Once your model has been evaluated officially, your scores will be added to the leaderboard.**Please refer to the** [https://stanfordmlgroup.github.io/competitions/chexpert/](https://stanfordmlgroup.github.io/competitions/chexpert/)
 ## What the code include?
 * If you want to train yourself from scratch, we provide training and test the footwork code. In addition, we provide complete training courses
 * If you want to use our model in your method, we provide **a best single network pre-training model,** and you can get the network code in the code
@@ -65,7 +65,7 @@ we test it on 200 patients dataset, got the **AUC** as below:
 |AVG_MAX|No|
 |AVG_MAX_LSE|No|
 
-* We also provide heatmap comparision here, including AVG, [LSE](https://arxiv.org/abs/1705.02315), and our own PCAM pooling.
+* We also provide heatmap comparision here, including AVG, [LSE](https://arxiv.org/abs/1705.02315), and our own [PCAM](https://arxiv.org/abs/2005.14480) pooling.
 
 
 <table>
@@ -98,6 +98,25 @@ we test it on 200 patients dataset, got the **AUC** as below:
 
 > Where the `CheXper_valid.txt` contains lines of jpg path 
 
+### About [PCAM](https://arxiv.org/abs/2005.14480) pooling
+
+* PCAM Overview:
+
+<img src="PCAM.png" width="100%" align="middle"/>
+
+* If you think PCAM is a good way to generate heatmaps, you can cite our article like this:
+
+### Citation
+
+    @misc{ye2020weakly,
+        title={Weakly Supervised Lesion Localization With Probabilistic-CAM Pooling},
+        author={Wenwu Ye and Jin Yao and Hui Xue and Yi Li},
+        year={2020},
+        eprint={2005.14480},
+        archivePrefix={arXiv},
+        primaryClass={cs.CV}
+    }
+
 
 ### Contact
 * If you have any quesions, please post it on github issues or email at coolver@sina.com
@@ -105,11 +124,5 @@ we test it on 200 patients dataset, got the **AUC** as below:
 ### Reference
 * [https://stanfordmlgroup.github.io/competitions/chexpert/](https://stanfordmlgroup.github.io/competitions/chexpert/)
 * [http://www.jfhealthcare.com/](http://www.jfhealthcare.com/)
-
-
-
-
-
-
 
 
