@@ -5,7 +5,7 @@ from torch import nn
 class PcamPool(nn.Module):
 
     def __init__(self):
-        super(ProbPool, self).__init__()
+        super(PcamPool, self).__init__()
 
     def forward(self, feat_map, logit_map):
         assert logit_map is not None
